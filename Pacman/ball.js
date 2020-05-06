@@ -7,10 +7,7 @@ class Ball {
         this.game = game;
         this.size = 20;
         this.position = position;
-        this.position = {
-            x: 40,
-            y: 40
-        }
+
 
 
     }

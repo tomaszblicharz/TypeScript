@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', appStart);
 
-const game_width = 600,
+const game_width = 560,
     game_height = 600;
 let canvas,
     ctx,

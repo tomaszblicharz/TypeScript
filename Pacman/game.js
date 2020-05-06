@@ -10,6 +10,24 @@ class Game {
         this.listWall = [];
         this.listBall = [];
         // this.timeStart()
+        this.board = [
+            [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1],
+            [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+            [1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1],
+            [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+            [1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1],
+            [1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+            [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+            [1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+            [1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
+            [1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
+            [1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1],
+            [0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0],
+            [1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1],
+            [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+
+        ]
     }
 
     startGame() {
@@ -19,23 +37,25 @@ class Game {
         this.ball = new Ball(this);
         this.wall = new Wall(this)
 
+        this.board.forEach((row, index) => {
 
-        for (let i = 0; i < 15; i++) {
-            this.listWall.push(new Wall(this, {
-                x: i * 40,
-                y: 0
+            row.forEach((col, index2) => {
+                if (col === 1) {
+                    this.listWall.push(new Wall(this, {
+                        x: index2 * 40,
+                        y: index * 40
 
-            }))
+                    }))
+                } else {
+                    this.listBall.push(new Ball(this, {
+                        x: index2 * 40,
+                        y: index * 40
 
-        }
-        for (let i = 0; i < 15; i++) {
-            this.listBall.push(new Ball(this, {
-                x: i * 40,
-                y: 0
+                    }))
+                }
 
-            }))
-
-        }
+            })
+        })
 
     }
 
@@ -44,7 +64,7 @@ class Game {
         this.pacman.draw(ctx)
         this.listBall.forEach(object => object.draw(ctx))
         this.listWall.forEach(object => object.draw(ctx))
-        // this.wall.draw(ctx)
+
     }
 
 
