@@ -1,25 +1,25 @@
 class Ball {
 
-    constructor(game) {
+    constructor(game, position) {
         this.image = document.querySelector('.goldenHole');
         this.gameHeight = game.gameHeight;
         this.gameWidth = game.gameWidth;
         this.game = game;
-        this.size = 40;
-        this.x = 300;
-        this.y = 300;
+        this.size = 20;
+        this.position = position;
+        this.position = {
+            x: 40,
+            y: 40
+        }
 
 
     }
     draw(ctx) {
-        ctx.drawImage(this.image, this.x, this.y, this.size, this.size)
-        // for (let i = 0; i < 10; i++) {
-        //     walls.push(new Wall(this, {
-        //         x: 1 * 24,
-        //         y: 23
-        //     }))
-        // }
+
+        ctx.drawImage(this.image, this.position.x, this.position.y, this.size, this.size)
+
     }
+
 
 
 }

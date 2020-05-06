@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', appStart);
 
-const game_width = 700,
+const game_width = 600,
     game_height = 600;
 let canvas,
     ctx,
@@ -10,9 +10,13 @@ let canvas,
     wall,
     collision,
     lastTime = 0,
-    walls = [],
+    walls,
     startButton,
-    timeBoard;
+    timeBoard,
+    food,
+    drawfood,
+    timeStart;
+
 
 function appStart() {
     canvas = document.querySelector('.gameArea');
@@ -21,7 +25,6 @@ function appStart() {
     game.startGame()
     // loadImage()
     gameLoop()
-
 }
 
 function gameLoop() {
@@ -30,12 +33,3 @@ function gameLoop() {
     game.draw(ctx);
     requestAnimationFrame(gameLoop);
 }
-
-// function loadImage() {
-
-//     const image = new Image()
-//     image.src = "background.jpg"
-//     image.addEventListener('load', () => {
-//         ctx.drawImage(image, 0, 0, ctx.canvas.game_width, ctx.canvas.game_height)
-//     })
-// }
