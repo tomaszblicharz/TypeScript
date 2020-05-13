@@ -16,6 +16,7 @@ let canvas,
     timeBoard,
     food,
     drawfood,
+    endGamee,
     timeStart;
 
 

@@ -9,8 +9,18 @@ class Game {
         this.endGame = false;
         this.timeBoard = document.querySelector('.time');
         this.listWall = [];
+        this.ball = []
         this.listBall = [];
+
         // this.timeStart()
+
+    }
+
+    startGame() {
+        this.board = []
+        this.pacman = new Pacman(this);
+        this.ball = new Ball(this);
+        this.wall = new Wall(this)
         this.board = [
             [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1],
@@ -29,14 +39,6 @@ class Game {
             [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
 
         ]
-    }
-
-    startGame() {
-        // console.log(this)
-        this.pacman = new Pacman(this);
-        this.ball = new Ball(this);
-        this.wall = new Wall(this)
-
 
         this.board.forEach((row, index) => {
             row.forEach((col, index2) => {
@@ -55,10 +57,11 @@ class Game {
                 }
 
 
+
+
             })
         })
-
-        // console.log(this.listBall)
+        console.log(this.listBall)
 
     }
 
@@ -77,16 +80,21 @@ class Game {
 
     update() {
         this.pacman.update();
-
         this.wall.update();
         this.ball.update();
-        this.listBall = this.listBall.filter(object => !object.flagDeletion);
-        // if (checkBall(this.pacman, this.listBall)) {
-        //     if (!this.endGame) {
-        //         this.finishGame()
-        //         this.endGame = true;
-        //     }
-        // }
+        // this.ball = this.ball.filter(object => !object.ball.flagDeletion);
+        if (checkBall(this.pacman, this.listBall)) {
+            let endGamee = 0
+            endGamee++
+            this.listBall.splice(this.position, 4)
+            if (endGamee === 2) {
+                this.finishGame()
+                this.endGame = true;
+            }
+            console.log(endGamee)
+            this.ball.flagDeletion = false;
+        }
+        console.log(this.listBall)
 
 
         console.log(this.ball.flagDeletion)

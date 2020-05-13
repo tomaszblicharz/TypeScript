@@ -6,10 +6,10 @@ function checkBall(pacman, ball) {
     let rightSideOfPacmanX = pacman.position.x + pacman.size;
 
 
-    let SideOfBallX = ball[0].position.x;
-    let SideOfBallY = ball[0].position.y;
-    let bottomSideOfBallY = ball[0].position.y + ball[0].size;
-    let rightSideOfBallX = ball[0].position.x + ball[0].size;
+    let SideOfBallX = ball[1].position.x;
+    let SideOfBallY = ball[1].position.y;
+    let bottomSideOfBallY = ball[1].position.y + ball[1].size;
+    let rightSideOfBallX = ball[1].position.x + ball[1].size;
     if ((SideOfPacmanX > SideOfBallX && rightSideOfPacmanX < rightSideOfBallX) && (SideOfPacmanY > SideOfBallY && bottomSideOfPacmanY < bottomSideOfBallY)) {
         return true;
     } else {
