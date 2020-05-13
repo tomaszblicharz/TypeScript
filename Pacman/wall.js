@@ -16,6 +16,7 @@ class Wall {
         if (checkWall(this.game.pacman, this.game.listWall)) {
             this.game.pacman.speed.x = 0
             this.game.pacman.speed.y = 0
+
         }
     }
 }
