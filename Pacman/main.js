@@ -8,7 +8,8 @@ let canvas,
     ball,
     game,
     wall,
-    collision,
+    collisionBall,
+    collisionWall,
     lastTime = 0,
     walls,
     startButton,
@@ -23,7 +24,6 @@ function appStart() {
     ctx = canvas.getContext('2d')
     game = new Game(game_width, game_height);
     game.startGame()
-    // loadImage()
     gameLoop()
 }
 

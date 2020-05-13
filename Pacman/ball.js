@@ -5,10 +5,13 @@ class Ball {
         this.gameHeight = game.gameHeight;
         this.gameWidth = game.gameWidth;
         this.game = game;
-        this.size = 20;
+        this.size = 50;
         this.position = position;
-
-
+        // this.position = {
+        //     x: 120,
+        //     y: 120
+        // };
+        this.flagDeletion = false;
 
     }
     draw(ctx) {
@@ -18,5 +21,10 @@ class Ball {
     }
 
 
+    update() {
+        if (checkBall(this.game.pacman, this.game.listBall)) {
+            this.flagDeletion = true;
+        }
+    }
 
 }

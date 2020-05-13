@@ -12,5 +12,10 @@ class Wall {
     draw(ctx) {
         ctx.drawImage(this.image, this.position.x, this.position.y, this.size, this.size)
     }
-
+    update() {
+        if (checkWall(this.game.pacman, this.game.listWall)) {
+            this.game.pacman.speed.x = 0
+            this.game.pacman.speed.y = 0
+        }
+    }
 }

@@ -1,10 +1,11 @@
 class Game {
-    constructor(gameWidth, gameHeight) {
+    constructor(gameWidth, gameHeight, position) {
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
         this.game = game;
         this.startTime = 0;
         this.finishTime;
+        this.position = position
         this.endGame = false;
         this.timeBoard = document.querySelector('.time');
         this.listWall = [];
@@ -32,51 +33,64 @@ class Game {
 
     startGame() {
         // console.log(this)
-
         this.pacman = new Pacman(this);
         this.ball = new Ball(this);
         this.wall = new Wall(this)
 
-        this.board.forEach((row, index) => {
 
+        this.board.forEach((row, index) => {
             row.forEach((col, index2) => {
                 if (col === 1) {
-                    this.listWall.push(new Wall(this, {
+                    let position = {
                         x: index2 * 40,
                         y: index * 40
-
-                    }))
+                    };
+                    this.listWall.push(new Wall(this, position));
                 } else {
-                    this.listBall.push(new Ball(this, {
+                    let position = {
                         x: index2 * 40,
                         y: index * 40
-
-                    }))
+                    };
+                    this.listBall.push(new Ball(this, position));
                 }
+
 
             })
         })
+
+        // console.log(this.listBall)
 
     }
 
     draw(ctx) {
 
+        // this.ball.draw(ctx)
         this.pacman.draw(ctx)
+
         this.listBall.forEach(object => object.draw(ctx))
         this.listWall.forEach(object => object.draw(ctx))
+        this.pacman.draw(ctx)
+
 
     }
 
 
     update() {
-        this.pacman.update()
-        if (checkBallInHole(this.pacman, this.ball)) {
+        this.pacman.update();
 
-            if (!this.endGame) {
-                this.finishGame()
-                this.endGame = true;
-            }
-        }
+        this.wall.update();
+        this.ball.update();
+        this.listBall = this.listBall.filter(object => !object.flagDeletion);
+        // if (checkBall(this.pacman, this.listBall)) {
+        //     if (!this.endGame) {
+        //         this.finishGame()
+        //         this.endGame = true;
+        //     }
+        // }
+
+
+        console.log(this.ball.flagDeletion)
+
     }
     // timeStart() {
     //     let time =  window.setInterval(this.timeBoard, 1000);

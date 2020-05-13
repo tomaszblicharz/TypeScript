@@ -5,20 +5,24 @@ class Pacman {
         this.image = document.querySelector('.pacman');
         this.gameHeight = game.gameHeight;
         this.gameWidth = game.gameWidth;
-        this.x = 10;
-        this.y = 300;
+        this.game = game;
+        this.position = {
+            x: 235,
+            y: 480
+        }
+
         this.speed = {
             x: 0,
             y: 0
         };
-        this.size = 30;
+        this.size = 25;
         this.gameloop;
         document.querySelector('.btnStart').addEventListener('click', () => this.startMoveBall());
 
-        this.game = game;
+
     }
     draw(ctx) {
-        ctx.drawImage(this.image, this.x, this.y, this.size, this.size)
+        ctx.drawImage(this.image, this.position.x, this.position.y, this.size, this.size)
     }
     startMoveBall() {
         document.addEventListener("keydown", e => {
@@ -95,20 +99,17 @@ class Pacman {
     }
 
     update() {
-        this.x += this.speed.x;
-        this.y += this.speed.y;
+        this.position.x += this.speed.x;
+        this.position.y += this.speed.y;
         // wall on left or right
-        if (this.x + this.size > this.gameWidth || this.x < 0) {
+        if (this.position.x + this.size > this.gameWidth || this.position.x < 0) {
             this.speed.x = 0
 
         }
         //wall on Top or bottom
-        if (this.y + this.size > this.gameHeight || this.y <= 0) {
+        if (this.position.y + this.size > this.gameHeight || this.position.y <= 0) {
             this.speed.y = 0
         }
-
-
-        checkBallInHole(this, this.game.ball)
 
 
 
