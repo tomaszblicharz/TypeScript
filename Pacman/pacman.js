@@ -8,14 +8,14 @@ class Pacman {
         this.game = game;
         this.position = {
             x: 235,
-            y: 480
+            y: 481
         }
 
         this.speed = {
             x: 0,
             y: 0
         };
-        this.size = 25;
+        this.size = 38;
         this.gameloop;
         document.querySelector('.btnStart').addEventListener('click', () => this.startMoveBall());
 
