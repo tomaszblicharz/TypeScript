@@ -1,10 +1,10 @@
-function checkWall(pacman, wall) {
+function checkWall(wall, gameObiect) {
 
 
-    let topPacman = pacman.position.y;
-    let bottomPacman = pacman.position.y + pacman.size;
-    let leftPacman = pacman.position.x;
-    let rightPacman = pacman.position.x + pacman.size;
+    let topObiect = gameObiect.position.y;
+    let bottomObiect = gameObiect.position.y + gameObiect.size;
+    let leftObiect = gameObiect.position.x;
+    let rightObiect = gameObiect.position.x + gameObiect.size;
 
     let topWall = wall.position.y;
     let bottomWall = wall.position.y + wall.size;
@@ -13,10 +13,10 @@ function checkWall(pacman, wall) {
 
 
     if (
-        bottomPacman >= topWall &&
-        topPacman <= bottomWall &&
-        rightPacman >= leftWall &&
-        leftPacman <= rightWall
+        bottomObiect >= topWall &&
+        topObiect <= bottomWall &&
+        rightObiect >= leftWall &&
+        leftObiect <= rightWall
     ) {
         return true;
     } else {

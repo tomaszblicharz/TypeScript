@@ -2,28 +2,17 @@ document.addEventListener('DOMContentLoaded', appStart);
 
 const game_width = 560,
     game_height = 600;
+
 let canvas,
     ctx,
-    pacman,
-    ball,
-    game,
-    wall,
-    collisionBall,
-    collisionWall,
-    lastTime = 0,
-    walls,
-    startButton,
-    timeBoard,
-    food,
-    drawfood,
-    endGamee,
-    timeStart;
+    game;
 
 
 function appStart() {
     canvas = document.querySelector('.gameArea');
     ctx = canvas.getContext('2d')
     game = new Game(game_width, game_height);
+
     game.startGame()
     gameLoop()
 }

@@ -7,7 +7,7 @@ class Pacman {
         this.gameWidth = game.gameWidth;
         this.game = game;
         this.position = {
-            x: 235,
+            x: 241,
             y: 481
         }
 
@@ -16,7 +16,6 @@ class Pacman {
             y: 0
         };
         this.size = 38;
-        this.gameloop;
         document.querySelector('.btnStart').addEventListener('click', () => this.startMoveBall());
 
 
@@ -101,17 +100,6 @@ class Pacman {
     update() {
         this.position.x += this.speed.x;
         this.position.y += this.speed.y;
-        // wall on left or right
-        if (this.position.x + this.size > this.gameWidth || this.position.x < 0) {
-            this.speed.x = 0
-
-        }
-        //wall on Top or bottom
-        if (this.position.y + this.size > this.gameHeight || this.position.y <= 0) {
-            this.speed.y = 0
-        }
-
-
 
     }
 

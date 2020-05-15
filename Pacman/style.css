@@ -26,6 +26,10 @@ h1 {
     display: none;
 }
 
+.monster {
+    display: none;
+}
+
 .goldenHole {
     display: none;
 

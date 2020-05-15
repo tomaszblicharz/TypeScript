@@ -9,7 +9,7 @@ class Game {
         this.timeBoard = document.querySelector('.time');
         this.listWall = [];
         this.listBall = [];
-
+        this.gameObjects = [];
         // this.timeStart()
 
     }
@@ -18,22 +18,24 @@ class Game {
 
         this.pacman = new Pacman(this);
         this.ball = new Ball(this);
-        this.wall = new Wall(this)
+        this.wall = new Wall(this);
+        this.monster = new Monster(this);
+        this.gameObjects = [this.monster, this.pacman]
         this.board = [
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1],
-            [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+            [1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1],
             [1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1],
-            [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-            [1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1],
             [1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+            [1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+            [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
             [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
-            [1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-            [1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
+            [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
             [1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1],
             [1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1],
-            [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-            [1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1],
+            [1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1],
+            [1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1],
+            [1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 
         ]
@@ -53,50 +55,47 @@ class Game {
                     };
                     this.listBall.push(new Ball(this, position));
                 }
-
-
-
-
             })
         })
-        // console.log(this.listBall)
-
     }
 
     draw(ctx) {
         this.listBall.forEach(object => object.draw(ctx));
-        this.pacman.draw(ctx);
+        // this.pacman.draw(ctx);
         this.listWall.forEach(object => object.draw(ctx));
+        // this.monster.draw(ctx)
+        this.gameObjects.forEach(object => object.draw(ctx));
 
     }
 
 
     update() {
         this.listBall.forEach(object => object.update());
-        this.listWall.forEach(object => object.update())
-        this.pacman.update();
-
+        this.listWall.forEach(object => object.update());
+        this.gameObjects.forEach(object => object.update());
+        // this.pacman.update();
+        // this.monster.update()
 
 
         if (this.listBall.length === 0) {
             this.finishGame()
-
+        }
+        if (checkMonster(this.monster, this.pacman)) {
+            this.finishGame()
+            // return alert("---GAME OVER---")
         }
 
 
     }
+
     // timeStart() {
-    //     let time =  window.setInterval(this.timeBoard, 1000);
-    //     this.timeBoard.textContent = this.startTime
-
-    // }
-    // timeStart() {
-
-
-    //     this.timeBoard.innerHTML = this.startTime;
     //     this.startTime++
+    //     this.timeBoard.textContent = this.startTime;
+    //     let time = window.setInterval(this.timeBoard, 1000);
+
+
     //     // console.log(time)
-    //     setTimeout("Time()", 1000);
+    //     setTimeout("time", 1000);
     // }
     finishGame() {
 
