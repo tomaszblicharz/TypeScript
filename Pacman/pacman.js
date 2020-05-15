@@ -15,7 +15,7 @@ class Pacman {
             x: 0,
             y: 0
         };
-        this.size = 38;
+        this.size = 35;
         document.querySelector('.btnStart').addEventListener('click', () => this.startMoveBall());
 
 
@@ -60,42 +60,42 @@ class Pacman {
 
             // console.log(e.keyCode)
         })
-        document.addEventListener("keyup", e => {
+        // document.addEventListener("keyup", e => {
 
-            switch (e.keyCode) {
-                case 37:
-                    if (this.speed.x < 0)
-                        this.stop()
+        //     switch (e.keyCode) {
+        //         case 37:
 
-                    break;
-                case 38:
-                    if (this.speed.y < 0)
-                        this.stop()
+        //             this.stop()
 
-                    break;
-                case 39:
-                    if (this.speed.x > 0)
-                        this.stop()
+        //             break;
+        //         case 38:
 
-                    break;
-                case 40:
-                    if (this.speed.y > 0)
-                        this.stop()
+        //             this.stop()
 
-                    break;
+        //             break;
+        //         case 39:
 
-            }
+        //             this.stop()
 
-            // console.log(e.keyCode)
-        })
+        //             break;
+        //         case 40:
+
+        //             this.stop()
+
+        //             break;
+
+        //     }
+
+        //     // console.log(e.keyCode)
+        // })
 
     }
-    stop() {
-        this.speed = {
-            x: 0,
-            y: 0
-        };
-    }
+    // stop() {
+    //     this.speed = {
+    //         x: 0,
+    //         y: 0
+    //     };
+    // }
 
     update() {
         this.position.x += this.speed.x;

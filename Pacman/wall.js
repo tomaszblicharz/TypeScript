@@ -21,27 +21,25 @@ class Wall {
         }
         if (checkWall(this.game.monster, this)) {
 
-            // this.game.monster.speed.x = -this.game.monster.speed.x
-            // this.game.monster.speed.y = -this.game.monster.speed.y
 
-            if (this.game.monster.position.x + this.game.monster.size > this.size || this.game.monster.position.x < 0) {
+            this.game.monster.speed.x >= 0
+            this.game.monster.speed.y >= 0
 
-                this.game.monster.speed = {
-                    x: 0.2,
-                    y: 0
-                }
-                // } else if (this.game.monster.position.y + this.game.monster.size > this.size || this.game.monster.position.y < 0) {
-                //     this.game.monster.speed = {
-                //         x: 0,
-                //         y: 0.2
-                //     }
-                // } else if (this.game.monster.position.y + this.game.monster.size > this.size || this.game.monster.position.x > 0) {
-                //     this.game.monster.speed = {
-                //         x: -0.2,
-                //         y: 0
-                //     }
+            // this.game.monster.randomSpeed()
 
+            this.game.monster.speed = {
+                x: 0,
+                y: -0.2
             }
+            // if (this.game.monster.position.x + this.game.monster.size > this.size || this.game.monster.position.x < 0) {
+
+
+
+            // }
+            //  else if (this.game.monster.position.y + this.game.monster.size > this.size || this.game.monster.position.y < 0) {
+            //     this.game.monster.speed = 1
+
+            // }
         }
     }
 }
