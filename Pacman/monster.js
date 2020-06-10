@@ -15,7 +15,7 @@ class Monster {
             y: 0
         }
         this.size = 30;
-        this.randomSpeed()
+        // this.randomSpeed()
 
     }
 
@@ -27,36 +27,35 @@ class Monster {
     draw(ctx) {
         ctx.drawImage(this.image, this.position.x, this.position.y, this.size, this.size)
     }
-    randomSpeed() {
-        const speed = [{
-            x: 0.2,
-            y: 0
-        }, {
-            x: 0,
-            y: 0.2
-        }, {
-            x: -0.2,
-            y: 0
-        }, {
-            x: 0,
-            y: -0.2
-        }]
-        this.speed = speed[Math.floor(Math.random() * speed.length)]
-    }
+    // randomSpeed() {
+    //     const speed = [{
+    //         x: 0.2,
+    //         y: 0
+    //     }, {
+    //         x: 0,
+    //         y: 0.2
+    //     }, {
+    //         x: -0.2,
+    //         y: 0
+    //     }, {
+    //         x: 0,
+    //         y: -0.2
+    //     }]
+    //     this.speed = speed[Math.floor(Math.random() * speed.length)]
+    // }
     update() {
 
 
         this.position.x += this.speed.x;
         this.position.y += this.speed.y;
 
-        // this.speed = {
-        //     x: 0.2,
-        //     y: 0
-        // }
+        this.speed = {
+            x: 0.2,
+            y: 0
+        }
 
         console.log(this.speed)
         // this.game.monster.randomSpeed()
-
         // this.game.monster.speed.x = -this.game.monster.speed.x
         // this.game.monster.speed.y = -this.game.monster.speed.y
 

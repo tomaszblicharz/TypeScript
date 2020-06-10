@@ -25,12 +25,12 @@ class Wall {
             this.game.monster.speed.x >= 0
             this.game.monster.speed.y >= 0
 
-            this.game.monster.randomSpeed()
+            // this.game.monster.randomSpeed()
 
-            // this.game.monster.speed = {
-            //     x: 0,
-            //     y: -0.2
-            // }
+            this.game.monster.speed = {
+                x: 0,
+                y: -0.2
+            }
             // if (this.game.monster.position.x + this.game.monster.size > this.size || this.game.monster.position.x < 0) {
 
 

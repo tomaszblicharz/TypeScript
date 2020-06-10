@@ -10,7 +10,7 @@ class Game {
         this.listWall = [];
         this.listBall = [];
         this.gameObjects = [];
-
+        // this.timeStart()
 
     }
 
@@ -61,7 +61,9 @@ class Game {
 
     draw(ctx) {
         this.listBall.forEach(object => object.draw(ctx));
+        // this.pacman.draw(ctx);
         this.listWall.forEach(object => object.draw(ctx));
+        // this.monster.draw(ctx)
         this.gameObjects.forEach(object => object.draw(ctx));
 
     }
@@ -71,6 +73,9 @@ class Game {
         this.listBall.forEach(object => object.update());
         this.listWall.forEach(object => object.update());
         this.gameObjects.forEach(object => object.update());
+        // this.pacman.update();
+        // this.monster.update()
+
 
         if (this.listBall.length === 0) {
             this.finishGame()
@@ -94,8 +99,8 @@ class Game {
     // }
     finishGame() {
 
-        // let timeToFinishGame = new Date().getTime() - this.startTime;
-        // alert(`Wygrałeś! Twój czas to ${timeToFinishGame.toFixed(1)* 0.001} s`)
-        // location.reload();
+        let timeToFinishGame = new Date().getTime() - this.startTime;
+        alert(`Wygrałeś! Twój czas to ${timeToFinishGame.toFixed(1)* 0.001} s`)
+        location.reload();
     }
 }
