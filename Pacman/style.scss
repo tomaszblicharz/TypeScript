@@ -1,0 +1,101 @@
+.gameArea {
+    border: 1px solid black;
+    margin-left: 50%;
+    margin-right: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+}
+
+.container {
+    margin-left: 50%;
+    margin-right: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 100px;
+    max-width: 1000px;
+}
+
+h1 {
+    text-align: center;
+
+}
+
+.pacman {
+    display: none;
+}
+
+.monster {
+    display: none;
+}
+
+.goldenHole {
+    display: none;
+
+}
+
+
+
+.imgwall {
+    display: none;
+}
+
+#background {
+    display: none;
+
+}
+
+.gameBar {
+
+    transform: translate(-50, -50%);
+    width: 500px;
+    height: 30px;
+    /* background-color: rgb(65, 65, 211); */
+    position: sticky;
+    transform: translateX(-50%);
+    margin-left: 50%;
+    margin-right: 50%;
+    /* border: 1px solid black; */
+
+}
+
+
+
+.btnStart {
+    width: 80px;
+    margin-left: 115px;
+    float: left;
+    height: 18px;
+    padding: 5px 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    /* color: #fff; */
+    background-color: #4CAF50;
+    border: 1px solid black;
+    border-radius: 10px;
+
+}
+
+.btnStart:hover {
+    background-color: #3e8e41
+}
+
+.btnStart:active {
+    background-color: #3e8e41;
+    /* box-shadow: 0 5px #666; */
+    /* transform: translateY(4px); */
+}
+
+.time {
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 15px;
+    font-weight: 900;
+    font-size: 20px;
+    background-color: #4CAF50;
+    float: left;
+    width: 80px;
+    height: 18px;
+    padding: 5px 5px;
+    border: 1px solid black
+}
