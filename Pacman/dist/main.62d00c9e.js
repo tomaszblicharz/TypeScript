@@ -372,13 +372,12 @@ exports.default = Wall;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var startMoveMonster = false;
 
 var Monster =
 /** @class */
 function () {
   function Monster(game) {
-    var _this = this;
-
     this.image = document.querySelector(".monster");
     this.gameHeight = game.gameHeight;
     this.gameWidth = game.gameWidth;
@@ -394,33 +393,31 @@ function () {
     this.size = 30; // this.randomSpeed()
 
     document.querySelector(".btnStart").addEventListener("click", function () {
-      return _this.startMoveMonster();
+      return startMoveMonster = true;
     });
   }
-
-  Monster.prototype.startMoveMonster = function () {
-    console.log("dziala");
-  };
 
   Monster.prototype.draw = function (ctx) {
     ctx.drawImage(this.image, this.position.x, this.position.y, this.size, this.size);
   };
 
   Monster.prototype.randomSpeed = function () {
-    var speed = [{
-      x: 0.2,
-      y: 0
-    }, {
-      x: 0,
-      y: 0.2
-    }, {
-      x: -0.2,
-      y: 0
-    }, {
-      x: 0,
-      y: -0.2
-    }];
-    this.speed = speed[Math.floor(Math.random() * speed.length)];
+    if (startMoveMonster) {
+      var speed = [{
+        x: 0.2,
+        y: 0
+      }, {
+        x: 0,
+        y: 0.2
+      }, {
+        x: -0.2,
+        y: 0
+      }, {
+        x: 0,
+        y: -0.2
+      }];
+      this.speed = speed[Math.floor(Math.random() * speed.length)];
+    }
   };
 
   Monster.prototype.update = function () {
@@ -518,6 +515,12 @@ var monster_1 = __importDefault(require("./monster"));
 
 var collisionMonster_1 = require("./collisionMonster");
 
+var GAMESTATE = {
+  GAMEOVER: false,
+  WINNER: false,
+  RUNNING: 2
+};
+
 var Game =
 /** @class */
 function () {
@@ -532,6 +535,7 @@ function () {
   }
 
   Game.prototype.startGame = function () {
+    // this.gamestate = GAMESTATE.RUNNING;
     var _this = this;
 
     this.pacman = new pacman_1.default(this);
@@ -571,6 +575,26 @@ function () {
     this.gameObjects.forEach(function (object) {
       return object.draw(ctx);
     });
+
+    if (GAMESTATE.GAMEOVER) {
+      ctx.rect(0, 0, this.gameWidth, this.gameHeight);
+      ctx.fillStyle = "rgba(0,0,0,1)";
+      ctx.fill();
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "white";
+      ctx.textAlign = "center";
+      ctx.fillText("GAME OVER", this.gameWidth / 2, this.gameHeight / 2);
+    }
+
+    if (GAMESTATE.WINNER) {
+      ctx.rect(0, 0, this.gameWidth, this.gameHeight);
+      ctx.fillStyle = "rgba(0,0,0,1)";
+      ctx.fill();
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "white";
+      ctx.textAlign = "center";
+      ctx.fillText("WINNER", this.gameWidth / 2, this.gameHeight / 2);
+    }
   };
 
   Game.prototype.update = function () {
@@ -584,14 +608,13 @@ function () {
       return object.update();
     });
 
-    if (this.listBall.length === 0) {
-      alert("WINNER");
-      location.reload();
+    if (collisionMonster_1.checkMonster(this.monster, this.pacman)) {
+      GAMESTATE.GAMEOVER = true;
     }
 
-    if (collisionMonster_1.checkMonster(this.monster, this.pacman)) {
-      alert("GAMEOVER");
-      location.reload();
+    if (this.listBall.length === 0) {
+      GAMESTATE.WINNER = true;
+      console.log(GAMESTATE.WINNER);
     }
   };
 
@@ -661,7 +684,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65221" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51119" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NotePocket</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NotePocket</title>
+    <link rel="stylesheet" href="../style.scss" />
+    <img class="monster" src="../images/blue-monster.jpg" />
+    <img class="goldenHole" src="../images/goldenHole.png" />
+    <img class="pacman" src="../images/pacman.jpg" />
+    <img class="imgwall" src="../images/imgwall.jpg" />
+  </head>
 
-  <link rel="stylesheet" href="../style.scss" />
-  <img class="monster" src="../images/blue-monster.jpg" />
-  <img class="goldenHole" src="../images/goldenHole.png" />
-  <img class="pacman" src="../images/pacman.jpg" />
-  <img class="imgwall" src="../images/imgwall.jpg" />
-</head>
+  <body>
+    <div class="container">
+      <h1>PacMan</h1>
+      <div class="gameBar">
+        <div class="btnStart">START</div>
+      </div>
 
-<body>
-  <div class="container">
-    <h1>PacMan</h1>
-    <div class="gameBar">
-      <div class="btnStart">START</div>
+      <canvas class="gameArea" width="560" height="600"></canvas>
     </div>
-
-    <canvas class="gameArea" width="560" height="600"></canvas>
-  </div>
-</body>
-<script src="../src/main.ts"></script>
-
+  </body>
+  <script src="../src/main.ts"></script>
 </html>

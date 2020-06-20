@@ -3,6 +3,7 @@ interface test1 {
   x: number;
   y: number;
 }
+let startMoveMonster = false;
 export default class Monster {
   image: HTMLElement;
   gameHeight: number;
@@ -28,12 +29,9 @@ export default class Monster {
     // this.randomSpeed()
     document
       .querySelector(".btnStart")
-      .addEventListener("click", () => this.startMoveMonster());
+      .addEventListener("click", () => (startMoveMonster = true));
   }
 
-  startMoveMonster() {
-    console.log("dziala");
-  }
   draw(ctx) {
     ctx.drawImage(
       this.image,
@@ -44,25 +42,27 @@ export default class Monster {
     );
   }
   randomSpeed() {
-    const speed = [
-      {
-        x: 0.2,
-        y: 0,
-      },
-      {
-        x: 0,
-        y: 0.2,
-      },
-      {
-        x: -0.2,
-        y: 0,
-      },
-      {
-        x: 0,
-        y: -0.2,
-      },
-    ];
-    this.speed = speed[Math.floor(Math.random() * speed.length)];
+    if (startMoveMonster) {
+      const speed = [
+        {
+          x: 0.2,
+          y: 0,
+        },
+        {
+          x: 0,
+          y: 0.2,
+        },
+        {
+          x: -0.2,
+          y: 0,
+        },
+        {
+          x: 0,
+          y: -0.2,
+        },
+      ];
+      this.speed = speed[Math.floor(Math.random() * speed.length)];
+    }
   }
   update() {
     this.position.x += this.speed.x;
