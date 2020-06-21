@@ -409,7 +409,7 @@ function () {
       y: 242
     };
     this.speed = {
-      x: 0,
+      x: 0.1,
       y: 0
     };
     this.size = 30; // this.randomSpeed()
@@ -425,13 +425,18 @@ function () {
 
   Monster.prototype.randomSpeed = function () {
     if (startMoveMonster) {
-      var speed = [// {
-      //   x: 1,
-      //   y: 0,
-      // },
-      {
+      var speed = [{
+        x: 0.4,
+        y: 0
+      }, {
         x: 0,
-        y: 1
+        y: 0.4
+      }, {
+        x: -0.4,
+        y: 0
+      }, {
+        x: 0,
+        y: -0.4
       }];
       this.speed = speed[Math.floor(Math.random() * speed.length)];
     }

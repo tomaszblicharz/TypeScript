@@ -26,7 +26,7 @@ export default class Monster {
       y: 242,
     };
     this.speed = {
-      x: 0,
+      x: 0.1,
       y: 0,
     };
     this.size = 30;
@@ -48,22 +48,22 @@ export default class Monster {
   randomSpeed() {
     if (startMoveMonster) {
       const speed = [
-        // {
-        //   x: 1,
-        //   y: 0,
-        // },
+        {
+          x: 0.4,
+          y: 0,
+        },
         {
           x: 0,
-          y: 1,
+          y: 0.4,
         },
-        // {
-        //   x: -1,
-        //   y: 0,
-        // },
-        // {
-        //   x: 0,
-        //   y: -1,
-        // },
+        {
+          x: -0.4,
+          y: 0,
+        },
+        {
+          x: 0,
+          y: -0.4,
+        },
       ];
       this.speed = speed[Math.floor(Math.random() * speed.length)];
     }
