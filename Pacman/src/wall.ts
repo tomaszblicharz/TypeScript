@@ -13,7 +13,7 @@ export default class Wall {
   game: Game;
   size: number;
   position: test1;
-
+  collisionWithWall: boolean;
   constructor(game, position) {
     this.image = document.querySelector(".imgwall");
     this.gameHeight = game.gameHeight;
@@ -21,6 +21,7 @@ export default class Wall {
     this.game = game;
     this.position = position;
     this.size = 40;
+    this.collisionWithWall = false;
   }
   draw(ctx) {
     ctx.drawImage(
@@ -38,19 +39,30 @@ export default class Wall {
       this.game.pacman.speed.x = 0;
       this.game.pacman.speed.y = 0;
     }
-    if (checkWall(this.game.monster, this)) {
-      this.game.monster.speed.x >= 0;
-      this.game.monster.speed.y >= 0;
 
-      // this.game.monster.randomSpeed()
-
-      // if (this.game.monster.position.x + this.game.monster.size > this.size || this.game.monster.position.x < 0) {
-
-      // }
-      //  else if (this.game.monster.position.y + this.game.monster.size > this.size || this.game.monster.position.y < 0) {
-      //     this.game.monster.speed = 1
-
-      // }
+    if (
+      checkWall(this.game.monster, this) &&
+      this.collisionWithWall === false
+    ) {
+      this.game.monster.clearSpeed();
+      this.collisionWithWall = true;
+      console.log("d");
     }
+    if (this.collisionWithWall === true) {
+      // this.game.monster.speed.x = -0.1;
+      this.game.monster.randomSpeed();
+      this.collisionWithWall = false;
+      console.log("ss");
+    }
+    // this.game.monster.randomSpeed()
+
+    // if (this.game.monster.position.x + this.game.monster.size > this.size || this.game.monster.position.x < 0) {
+
+    // }
+    //  else if (this.game.monster.position.y + this.game.monster.size > this.size || this.game.monster.position.y < 0) {
+    //     this.game.monster.speed = 1
+
+    // }
+    // }
   }
 }

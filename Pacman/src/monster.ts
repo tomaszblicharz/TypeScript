@@ -1,4 +1,6 @@
 import Game from "./game";
+import { checkBall } from "./collisionBall";
+
 interface test1 {
   x: number;
   y: number;
@@ -12,7 +14,9 @@ export default class Monster {
   size: number;
   position: test1;
   speed: test1;
+  collisionWithBall: boolean;
   constructor(game) {
+    this.collisionWithBall = false;
     this.image = document.querySelector(".monster");
     this.gameHeight = game.gameHeight;
     this.gameWidth = game.gameWidth;
@@ -44,32 +48,45 @@ export default class Monster {
   randomSpeed() {
     if (startMoveMonster) {
       const speed = [
-        {
-          x: 0.2,
-          y: 0,
-        },
-        {
-          x: 0,
-          y: 0.2,
-        },
-        {
-          x: -0.2,
-          y: 0,
-        },
+        // {
+        //   x: 1,
+        //   y: 0,
+        // },
         {
           x: 0,
-          y: -0.2,
+          y: 1,
         },
+        // {
+        //   x: -1,
+        //   y: 0,
+        // },
+        // {
+        //   x: 0,
+        //   y: -1,
+        // },
       ];
       this.speed = speed[Math.floor(Math.random() * speed.length)];
     }
+  }
+  clearSpeed() {
+    this.speed = {
+      x: 0,
+      y: 0,
+    };
+    this.game.wall.collisionWithWall = true;
   }
   update() {
     this.position.x += this.speed.x;
     this.position.y += this.speed.y;
 
-    // console.log(this.speed);
-    this.randomSpeed();
+    // if ((this.game.ball.collisionWithBall = true)) {
+    //   this.randomSpeed();
+    // } else if ((this.game.ball.collisionWithBall = false)) {
+    //   this.speed = {
+    //     x: 0,
+    //     y: 0,
+    //   };
+    // }
     // this.game.monster.speed.x = -this.game.monster.speed.x
     // this.game.monster.speed.y = -this.game.monster.speed.y
 

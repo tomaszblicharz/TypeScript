@@ -86,21 +86,19 @@ export default class Game {
 
     if (GAMESTATE.GAMEOVER) {
       ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-      ctx.fillStyle = "rgba(0,0,0,1)";
+      ctx.fillStyle = "black";
       ctx.fill();
-
-      ctx.font = "30px Arial";
-      ctx.fillStyle = "white";
+      ctx.font = "40px classic";
       ctx.textAlign = "center";
+      ctx.fillStyle = "white";
       ctx.fillText("GAME OVER", this.gameWidth / 2, this.gameHeight / 2);
     }
 
     if (GAMESTATE.WINNER) {
       ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-      ctx.fillStyle = "rgba(0,0,0,1)";
+      ctx.fillStyle = "black";
       ctx.fill();
-
-      ctx.font = "30px Arial";
+      ctx.font = "40px classic";
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.fillText("WINNER", this.gameWidth / 2, this.gameHeight / 2);

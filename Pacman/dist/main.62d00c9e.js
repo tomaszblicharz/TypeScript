@@ -270,6 +270,7 @@ function () {
     this.size = 40;
     this.position = position;
     this.flagDeletion = false;
+    this.collisionWithBall = false;
   }
 
   Ball.prototype.draw = function (ctx) {
@@ -279,6 +280,11 @@ function () {
   Ball.prototype.update = function () {
     if (collisionBall_1.checkBall(this.game.pacman, this)) {
       this.flagDeletion = true;
+    }
+
+    if (collisionBall_1.checkBall(this.game.monster, this)) {
+      this.game.wall.collisionWithWall = false;
+      console.log(this.game.wall.collisionWithWall);
     }
 
     if (this.flagDeletion) {
@@ -301,6 +307,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.checkWall = void 0;
 
 function checkWall(wall, gameObiect) {
+  // let leftPacman = pacman.position.x;
+  // let topPacman = pacman.position.y;
+  // let bottomPacman = pacman.position.y + pacman.size;
+  // let rightPacman = pacman.position.x + pacman.size;
   var topObiect = gameObiect.position.y;
   var bottomObiect = gameObiect.position.y + gameObiect.size;
   var leftObiect = gameObiect.position.x;
@@ -337,6 +347,7 @@ function () {
     this.game = game;
     this.position = position;
     this.size = 40;
+    this.collisionWithWall = false;
   }
 
   Wall.prototype.draw = function (ctx) {
@@ -351,15 +362,25 @@ function () {
       this.game.pacman.speed.y = 0;
     }
 
-    if (collisionWall_1.checkWall(this.game.monster, this)) {
-      this.game.monster.speed.x >= 0;
-      this.game.monster.speed.y >= 0; // this.game.monster.randomSpeed()
-      // if (this.game.monster.position.x + this.game.monster.size > this.size || this.game.monster.position.x < 0) {
-      // }
-      //  else if (this.game.monster.position.y + this.game.monster.size > this.size || this.game.monster.position.y < 0) {
-      //     this.game.monster.speed = 1
-      // }
+    if (collisionWall_1.checkWall(this.game.monster, this) && this.collisionWithWall === false) {
+      this.game.monster.clearSpeed();
+      this.collisionWithWall = true;
+      console.log("d");
     }
+
+    if (this.collisionWithWall === true) {
+      // this.game.monster.speed.x = -0.1;
+      this.game.monster.randomSpeed();
+      this.collisionWithWall = false;
+      console.log("ss");
+    } // this.game.monster.randomSpeed()
+    // if (this.game.monster.position.x + this.game.monster.size > this.size || this.game.monster.position.x < 0) {
+    // }
+    //  else if (this.game.monster.position.y + this.game.monster.size > this.size || this.game.monster.position.y < 0) {
+    //     this.game.monster.speed = 1
+    // }
+    // }
+
   };
 
   return Wall;
@@ -378,6 +399,7 @@ var Monster =
 /** @class */
 function () {
   function Monster(game) {
+    this.collisionWithBall = false;
     this.image = document.querySelector(".monster");
     this.gameHeight = game.gameHeight;
     this.gameWidth = game.gameWidth;
@@ -403,28 +425,37 @@ function () {
 
   Monster.prototype.randomSpeed = function () {
     if (startMoveMonster) {
-      var speed = [{
-        x: 0.2,
-        y: 0
-      }, {
+      var speed = [// {
+      //   x: 1,
+      //   y: 0,
+      // },
+      {
         x: 0,
-        y: 0.2
-      }, {
-        x: -0.2,
-        y: 0
-      }, {
-        x: 0,
-        y: -0.2
+        y: 1
       }];
       this.speed = speed[Math.floor(Math.random() * speed.length)];
     }
   };
 
+  Monster.prototype.clearSpeed = function () {
+    this.speed = {
+      x: 0,
+      y: 0
+    };
+    this.game.wall.collisionWithWall = true;
+  };
+
   Monster.prototype.update = function () {
     this.position.x += this.speed.x;
-    this.position.y += this.speed.y; // console.log(this.speed);
-
-    this.randomSpeed(); // this.game.monster.speed.x = -this.game.monster.speed.x
+    this.position.y += this.speed.y; // if ((this.game.ball.collisionWithBall = true)) {
+    //   this.randomSpeed();
+    // } else if ((this.game.ball.collisionWithBall = false)) {
+    //   this.speed = {
+    //     x: 0,
+    //     y: 0,
+    //   };
+    // }
+    // this.game.monster.speed.x = -this.game.monster.speed.x
     // this.game.monster.speed.y = -this.game.monster.speed.y
     // if (this.position.x + this.size > this.game.wall.size || this.position.x < 0) {
     // if (this.game.monster.position.x + this.game.monster.size > this.size || this.game.monster.position.x < 0) {
@@ -578,19 +609,19 @@ function () {
 
     if (GAMESTATE.GAMEOVER) {
       ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-      ctx.fillStyle = "rgba(0,0,0,1)";
+      ctx.fillStyle = "black";
       ctx.fill();
-      ctx.font = "30px Arial";
-      ctx.fillStyle = "white";
+      ctx.font = "40px classic";
       ctx.textAlign = "center";
+      ctx.fillStyle = "white";
       ctx.fillText("GAME OVER", this.gameWidth / 2, this.gameHeight / 2);
     }
 
     if (GAMESTATE.WINNER) {
       ctx.rect(0, 0, this.gameWidth, this.gameHeight);
-      ctx.fillStyle = "rgba(0,0,0,1)";
+      ctx.fillStyle = "black";
       ctx.fill();
-      ctx.font = "30px Arial";
+      ctx.font = "40px classic";
       ctx.fillStyle = "white";
       ctx.textAlign = "center";
       ctx.fillText("WINNER", this.gameWidth / 2, this.gameHeight / 2);
@@ -684,7 +715,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51119" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50144" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

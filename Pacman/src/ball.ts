@@ -1,4 +1,6 @@
 import { checkBall } from "./collisionBall";
+import { checkWall } from "./collisionWall";
+
 import Game from "./game";
 interface test1 {
   x: number;
@@ -13,7 +15,7 @@ export default class Ball {
   size: number;
   position: test1;
   flagDeletion: boolean;
-
+  collisionWithBall: any;
   constructor(game, position) {
     this.image = document.querySelector(".goldenHole");
     this.gameHeight = game.gameHeight;
@@ -22,6 +24,7 @@ export default class Ball {
     this.size = 40;
     this.position = position;
     this.flagDeletion = false;
+    this.collisionWithBall = false;
   }
   draw(ctx) {
     ctx.drawImage(
@@ -36,6 +39,10 @@ export default class Ball {
   update() {
     if (checkBall(this.game.pacman, this)) {
       this.flagDeletion = true;
+    }
+    if (checkBall(this.game.monster, this)) {
+      this.game.wall.collisionWithWall = false;
+      console.log(this.game.wall.collisionWithWall);
     }
     if (this.flagDeletion) {
       this.game.listBall = this.game.listBall.filter(
