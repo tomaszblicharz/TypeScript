@@ -283,8 +283,7 @@ function () {
     }
 
     if (collisionBall_1.checkBall(this.game.monster, this)) {
-      this.game.wall.collisionWithWall = false;
-      console.log(this.game.wall.collisionWithWall);
+      this.game.wall.collisionWithWall = false; // console.log(this.game.wall.collisionWithWall);
     }
 
     if (this.flagDeletion) {
@@ -408,11 +407,11 @@ function () {
     this.gameWidth = game.gameWidth;
     this.game = game;
     this.position = {
-      x: 241,
+      x: 200,
       y: 242
     };
     this.speed = {
-      x: 0.1,
+      x: 0,
       y: 0
     };
     this.size = 30; // this.randomSpeed()

@@ -22,11 +22,11 @@ export default class Monster {
     this.gameWidth = game.gameWidth;
     this.game = game;
     this.position = {
-      x: 241,
+      x: 200,
       y: 242,
     };
     this.speed = {
-      x: 0.1,
+      x: 0,
       y: 0,
     };
     this.size = 30;

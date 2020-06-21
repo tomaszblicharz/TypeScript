@@ -42,7 +42,7 @@ export default class Ball {
     }
     if (checkBall(this.game.monster, this)) {
       this.game.wall.collisionWithWall = false;
-      console.log(this.game.wall.collisionWithWall);
+      // console.log(this.game.wall.collisionWithWall);
     }
     if (this.flagDeletion) {
       this.game.listBall = this.game.listBall.filter(
