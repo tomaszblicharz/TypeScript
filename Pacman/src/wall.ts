@@ -40,22 +40,22 @@ export default class Wall {
       this.game.pacman.speed.y = 0;
     }
 
-    if (
-      checkWall(this.game.monster, this) &&
-      this.collisionWithWall === false
-    ) {
-      this.game.monster.clearSpeed();
-      this.collisionWithWall = true;
-      console.log("d");
-    }
-    if (this.collisionWithWall === true) {
-      // this.game.monster.speed.x = -0.1;
+    // if (
+    //   checkWall(this.game.monster, this) &&
+    //   this.collisionWithWall === false
+    // ) {
+    //   this.game.monster.clearSpeed();
+    //   this.collisionWithWall = true;
+    //   console.log("d");
+    // } else if (this.collisionWithWall === true) {
+    //   // this.game.monster.speed.x = -0.1;
+    //   this.game.monster.randomSpeed();
+    //   this.collisionWithWall = false;
+    //   console.log("ss");
+    // }
+    if (checkWall(this.game.monster, this)) {
       this.game.monster.randomSpeed();
-      this.collisionWithWall = false;
-      console.log("ss");
     }
-    // this.game.monster.randomSpeed()
-
     // if (this.game.monster.position.x + this.game.monster.size > this.size || this.game.monster.position.x < 0) {
 
     // }
